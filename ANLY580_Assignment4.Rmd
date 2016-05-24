@@ -65,6 +65,21 @@ boxplot(iris$Sepal.Length~iris$Species,col=topo.colors(3)) #Box plots with three
 
 ## Ying	Dong
 ## Rui	Fan
+This is a pie chart using packge ggplot2. Data is imported from a csv file which is online free resource. This pie chart shows the relation between number of children and number of bedrooms in a household.
+```{r, echo=TRUE}
+library(ggplot2)
+this_base <- "bedrooms By number of children"
+my_data <- read.csv(url("http://stat511.cwick.co.nz/homeworks/acs_or.csv"))
+str(my_data)
+as.data.frame(xtabs(bedrooms ~ number_children , my_data))
+sum_date <- as.data.frame(xtabs(bedrooms ~ number_children, my_data))
+bp<- ggplot(sum_date, aes(x="", y=Freq, fill=number_children))+
+geom_bar(width = 1, stat = "identity")+ 
+  ggtitle("bedrooms By number of children")
+bp
+pie <- bp + coord_polar("y", start=0)
+pie
+```
 ## Sukanyaraj	Govindaraaj
 ## Kan	Hui
 
